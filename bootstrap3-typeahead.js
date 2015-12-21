@@ -52,6 +52,7 @@
     this.matcher = this.options.matcher || this.matcher;
     this.sorter = this.options.sorter || this.sorter;
     this.select = this.options.select || this.select;
+    this.selectAll = this.options.selectAll || this.selectAll;
     this.autoSelect = typeof this.options.autoSelect == 'boolean' ? this.options.autoSelect : true;
     this.highlighter = this.options.highlighter || this.highlighter;
     this.render = this.options.render || this.render;
@@ -88,6 +89,14 @@
         this.afterSelect(newVal);
       }
       return this.hide();
+    },
+
+    selectAll: function() {
+        if (typeof this.options.selectAll == 'function') {
+            this.options.selectAll.call(this);
+        } else {
+            this.select();
+        }
     },
 
     updater: function (item) {
@@ -374,7 +383,9 @@
         case 9: // tab
         case 13: // enter
           if (!this.shown) return;
-          this.select();
+          if (!this.shown && this.query) return;
+          this.selectAll();
+          this.hide();
           break;
 
         case 27: // escape
