@@ -325,6 +325,12 @@
       this.$menu.remove();
     },
 
+    reset: function () {
+      this.$element.val('');
+      this.$menu.empty();
+      this.lookup('');
+    },
+
     eventSupported: function (eventName) {
       var isSupported = eventName in this.$element;
       if (!isSupported) {
