@@ -125,7 +125,7 @@
         element = this.$menu.insertAfter(this.$element);
       }
       element.css({
-        top: pos.top + pos.height + scrollHeight, left: pos.left
+        top: parseInt(pos.top, 10) + parseInt(pos.height, 10) + parseInt(scrollHeight, 10), left: pos.left
       })
         .show();
 
@@ -394,8 +394,9 @@
           var active = this.$menu.find('.active');
           if (active.length > 0) {
             this.select();
+          } else {
+            this.selectAll();
           }
-          this.selectAll();
           this.hide();
           break;
 
