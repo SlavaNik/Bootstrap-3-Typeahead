@@ -392,7 +392,7 @@
         case 9: // tab
         case 13: // enter
           var active = this.$menu.find('.active');
-          if (active.length > 0) {
+          if (active.length > 0 && this.shown) {
             this.select();
           } else {
             this.selectAll();
